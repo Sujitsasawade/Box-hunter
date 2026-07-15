@@ -1,0 +1,1298 @@
+/* ==========================================================
+   BOX HUNTER
+   style.css (Part 1)
+   Theme + Layout + Start Screen
+========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+
+    --bg:#07121f;
+    --card:#122338;
+    --card2:#1b3554;
+
+    --primary:#00d9ff;
+    --secondary:#6c63ff;
+    --success:#2ed573;
+    --danger:#ff4757;
+    --warning:#ffa502;
+
+    --text:#ffffff;
+    --text2:#b9c8da;
+
+    --shadow:0 15px 35px rgba(0,0,0,.35);
+
+    --radius:18px;
+
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#08131f,#112845,#08131f);
+    color:var(--text);
+
+    min-height:100vh;
+
+    overflow:hidden;
+}
+
+/* Animated Background */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    width:700px;
+    height:700px;
+
+    background:radial-gradient(var(--primary),transparent 70%);
+
+    top:-250px;
+    left:-250px;
+
+    opacity:.15;
+
+    animation:moveOne 12s infinite alternate;
+
+}
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    width:650px;
+    height:650px;
+
+    background:radial-gradient(var(--secondary),transparent 70%);
+
+    right:-220px;
+    bottom:-220px;
+
+    opacity:.15;
+
+    animation:moveTwo 14s infinite alternate;
+
+}
+
+@keyframes moveOne{
+
+    from{
+        transform:translate(0,0);
+    }
+
+    to{
+        transform:translate(120px,80px);
+    }
+
+}
+
+@keyframes moveTwo{
+
+    from{
+        transform:translate(0,0);
+    }
+
+    to{
+        transform:translate(-120px,-60px);
+    }
+
+}
+
+/* ========================= */
+
+.app{
+
+    width:100%;
+    min-height:100vh;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+}
+
+/* ========================= */
+/* Screen */
+/* ========================= */
+
+.screen{
+
+    width:100%;
+    max-width:1100px;
+
+    background:rgba(18,35,56,.82);
+
+    backdrop-filter:blur(16px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow);
+
+    padding:35px;
+
+    display:none;
+
+    animation:fade .45s ease;
+}
+
+.screen.active{
+    display:block;
+}
+
+@keyframes fade{
+
+    from{
+
+        opacity:0;
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ========================= */
+/* Title */
+/* ========================= */
+
+.logo{
+
+    font-size:55px;
+    text-align:center;
+
+    font-weight:800;
+
+    letter-spacing:2px;
+
+    color:var(--primary);
+
+    text-shadow:0 0 15px rgba(0,217,255,.4);
+
+}
+
+.tagline{
+
+    margin-top:10px;
+
+    text-align:center;
+
+    color:var(--text2);
+
+    font-size:17px;
+
+}
+
+/* ========================= */
+/* Cards */
+/* ========================= */
+
+.option-grid{
+
+    margin-top:35px;
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+    gap:22px;
+
+}
+
+.card{
+
+    background:var(--card);
+
+    border-radius:16px;
+
+    padding:22px;
+
+    transition:.3s;
+
+    border:2px solid transparent;
+
+    cursor:pointer;
+
+}
+
+.card:hover{
+
+    transform:translateY(-7px);
+
+    border-color:var(--primary);
+
+    box-shadow:0 15px 35px rgba(0,217,255,.15);
+
+}
+
+.card.selected{
+
+    border-color:var(--success);
+
+    background:var(--card2);
+
+}
+
+.card h3{
+
+    margin-bottom:12px;
+
+    font-size:22px;
+
+}
+
+.card p{
+
+    color:var(--text2);
+
+    line-height:1.6;
+
+    font-size:15px;
+
+}
+
+/* Difficulty Colors */
+
+.easy{
+    border-left:6px solid #2ed573;
+}
+
+.medium{
+    border-left:6px solid #ffa502;
+}
+
+.hard{
+    border-left:6px solid #ff4757;
+}
+
+/* ========================= */
+/* Time Buttons */
+/* ========================= */
+
+.time-options{
+
+    margin-top:35px;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+}
+
+.time-btn{
+
+    width:130px;
+    height:58px;
+
+    border:none;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    background:var(--card2);
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+.time-btn:hover{
+
+    background:var(--primary);
+    color:#000;
+
+}
+
+.time-btn.active{
+
+    background:var(--success);
+    color:#000;
+
+}
+
+/* ========================= */
+/* Main Button */
+/* ========================= */
+
+.primary-btn{
+
+    display:block;
+
+    margin:40px auto 0;
+
+    width:260px;
+    height:65px;
+
+    border:none;
+
+    border-radius:50px;
+
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    color:#fff;
+
+    font-size:20px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.primary-btn:hover{
+
+    transform:translateY(-5px) scale(1.03);
+
+    box-shadow:0 15px 35px rgba(0,217,255,.35);
+
+}
+/* ================================
+   BOX HUNTER - STYLE CSS PART 2
+   Animations + Game Elements
+================================ */
+
+
+/* Box Animation */
+
+@keyframes boxAppear {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+.game-box {
+    animation: boxAppear 0.3s ease;
+}
+
+
+/* Hit Animation */
+
+@keyframes hitEffect {
+
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.4) rotate(15deg);
+    }
+
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+
+.box-hit {
+    animation: hitEffect 0.3s forwards;
+}
+
+
+/* Score Popup */
+
+.score-popup {
+
+    position: absolute;
+    font-size: 25px;
+    font-weight: bold;
+    color: #00ff88;
+    pointer-events: none;
+
+    animation: scoreMove 0.8s ease forwards;
+}
+
+
+@keyframes scoreMove {
+
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-70px);
+    }
+}
+
+
+
+/* Timer Warning */
+
+.timer-warning {
+
+    animation: timerBlink 0.5s infinite alternate;
+
+}
+
+
+@keyframes timerBlink {
+
+    from {
+        color: white;
+    }
+
+    to {
+        color: red;
+    }
+
+}
+
+
+
+/* Game Over Screen */
+
+.game-over {
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    background: rgba(0,0,0,0.85);
+
+    padding: 40px;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    color: white;
+
+    display: none;
+
+    z-index: 100;
+
+}
+
+
+.game-over h1 {
+
+    font-size: 45px;
+
+    margin-bottom: 20px;
+
+}
+
+
+
+.game-over button {
+
+    padding: 12px 35px;
+
+    border: none;
+
+    border-radius: 30px;
+
+    background: #00ff88;
+
+    color: black;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+}
+
+
+.game-over button:hover {
+
+    transform: scale(1.1);
+
+}
+
+
+
+/* Difficulty Buttons */
+
+
+.difficulty-btn {
+
+    padding: 12px 25px;
+
+    margin: 10px;
+
+    border-radius: 25px;
+
+    border: 2px solid #00ff88;
+
+    background: transparent;
+
+    color: white;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+}
+
+
+
+.difficulty-btn:hover,
+.difficulty-btn.active {
+
+    background: #00ff88;
+
+    color: black;
+
+}
+
+
+
+/* Mode Buttons */
+
+
+.mode-btn {
+
+    padding: 10px 20px;
+
+    border-radius: 20px;
+
+    border: none;
+
+    margin: 5px;
+
+    cursor: pointer;
+
+    background: #222;
+
+    color: white;
+
+}
+
+
+
+.mode-btn:hover {
+
+    background: #00ff88;
+
+    color: black;
+
+}
+
+
+
+/* Responsive Design */
+
+
+@media(max-width:768px){
+
+
+    .game-container {
+
+        width: 95%;
+
+        height: 70vh;
+
+    }
+
+
+    .game-box {
+
+        width: 45px;
+
+        height: 45px;
+
+    }
+
+
+    .score {
+
+        font-size: 20px;
+
+    }
+
+
+    .game-over h1 {
+
+        font-size: 32px;
+
+    }
+
+
+}
+
+
+
+/* Mobile Small Screen */
+
+
+@media(max-width:450px){
+
+
+    .game-box {
+
+        width:35px;
+
+        height:35px;
+
+    }
+
+
+    button {
+
+        font-size:14px;
+
+    }
+
+
+}
+/* ==============================
+   GAME AREA & BOX ANIMATION
+============================== */
+
+.game-area {
+    position: relative;
+    width: 90%;
+    max-width: 900px;
+    height: 500px;
+    margin: 20px auto;
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid rgba(255,255,255,0.2);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+}
+
+.box {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #ffcc00, #ff6600);
+    border-radius: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    user-select: none;
+    transition: 0.2s ease;
+    box-shadow: 0 8px 20px rgba(255,165,0,0.5);
+}
+
+.box:hover {
+    transform: scale(1.15) rotate(5deg);
+}
+
+.box:active {
+    transform: scale(0.9);
+}
+
+
+/* ==============================
+   SCORE & TIMER DISPLAY
+============================== */
+
+.status-panel {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
+    max-width: 600px;
+    margin: 15px auto;
+    padding: 15px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.status-box {
+    text-align: center;
+    color: white;
+    font-size: 18px;
+}
+
+.status-box span {
+    display: block;
+    margin-top: 5px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #38bdf8;
+}
+
+
+/* ==============================
+   RESULT SCREEN
+============================== */
+
+.result-screen {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+}
+
+.result-card {
+    width: 350px;
+    padding: 30px;
+    text-align: center;
+    background: #ffffff;
+    border-radius: 25px;
+    animation: popUp 0.5s ease;
+}
+
+.result-card h2 {
+    color: #111827;
+    font-size: 32px;
+}
+
+.result-card p {
+    color: #374151;
+    font-size: 20px;
+}
+
+
+/* ==============================
+   BUTTON EFFECTS
+============================== */
+
+.game-btn {
+    padding: 14px 35px;
+    margin: 10px;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(135deg,#06b6d4,#2563eb);
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.game-btn:hover {
+    transform: translateY(-3px);
+    box-shadow:0 10px 25px rgba(37,99,235,0.5);
+}
+
+
+/* ==============================
+   MOBILE RESPONSIVE
+============================== */
+
+@media(max-width:600px){
+
+    .game-area{
+        height:420px;
+        width:95%;
+    }
+
+    .box{
+        width:55px;
+        height:55px;
+        font-size:24px;
+    }
+
+    .status-panel{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .result-card{
+        width:85%;
+    }
+}
+
+
+/* ==============================
+   ANIMATIONS
+============================== */
+
+@keyframes popUp {
+
+    from{
+        transform:scale(0.5);
+        opacity:0;
+    }
+
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+
+@keyframes shake {
+
+    0%{
+        transform:translateX(0);
+    }
+
+    25%{
+        transform:translateX(-10px);
+    }
+
+    50%{
+        transform:translateX(10px);
+    }
+
+    100%{
+        transform:translateX(0);
+    }
+}
+
+.wrong {
+    animation: shake 0.3s;
+}
+
+
+/* ==============================
+   HIDDEN ELEMENT
+============================== */
+
+.hidden {
+    display:none;
+}
+/* =========================================
+   GAME AREA ANIMATION
+========================================= */
+
+.game-area {
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* =========================================
+   BOX HOVER EFFECT
+========================================= */
+
+.box:hover {
+    transform: scale(1.15);
+    cursor: pointer;
+    filter: brightness(1.2);
+}
+
+
+/* =========================================
+   SCORE POPUP
+========================================= */
+
+.score-popup {
+    position: absolute;
+    font-size: 28px;
+    font-weight: bold;
+    color: #00ff99;
+    animation: scoreMove 0.8s ease forwards;
+    pointer-events: none;
+}
+
+
+@keyframes scoreMove {
+
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-60px);
+    }
+}
+
+
+/* =========================================
+   GAME OVER SCREEN
+========================================= */
+
+.game-over {
+    display: none;
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 20;
+}
+
+
+.game-over h2 {
+    font-size: 45px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+
+.game-over p {
+    font-size: 22px;
+    color: #ddd;
+}
+
+
+/* =========================================
+   BUTTON EFFECTS
+========================================= */
+
+button {
+    transition: all 0.3s ease;
+}
+
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+
+button:active {
+    transform: scale(0.95);
+}
+
+
+/* =========================================
+   MOBILE RESPONSIVE
+========================================= */
+
+@media (max-width:768px) {
+
+    .game-container {
+        width:95%;
+        padding:15px;
+    }
+
+
+    .game-title {
+        font-size:32px;
+    }
+
+
+    .score-board {
+        flex-direction:column;
+        gap:10px;
+    }
+
+
+    .box {
+        width:45px;
+        height:45px;
+    }
+
+
+    button {
+        width:100%;
+        font-size:18px;
+    }
+
+}
+
+
+/* =========================================
+   SMALL DEVICES
+========================================= */
+
+@media (max-width:480px) {
+
+    .game-title {
+        font-size:26px;
+    }
+
+
+    .timer,
+    .score {
+        font-size:18px;
+    }
+
+
+    .box {
+        width:35px;
+        height:35px;
+    }
+
+}
+/* ==============================
+   RESPONSIVE DESIGN
+================================ */
+
+@media (max-width: 900px) {
+
+    .game-container {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .game-title {
+        font-size: 40px;
+    }
+
+    .stats-box {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .box {
+        width: 70px;
+        height: 70px;
+    }
+
+}
+
+
+/* Mobile Devices */
+
+@media (max-width: 600px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .start-screen h1 {
+        font-size: 42px;
+    }
+
+    .start-screen p {
+        font-size: 16px;
+    }
+
+    .difficulty-buttons button,
+    .time-buttons button {
+        width: 100%;
+        margin: 8px 0;
+    }
+
+
+    .game-area {
+        height: 70vh;
+    }
+
+
+    .box {
+        width: 55px;
+        height: 55px;
+    }
+
+
+    .score,
+    .timer,
+    .high-score {
+        font-size: 18px;
+    }
+
+}
+
+
+/* ==============================
+   ANIMATIONS
+================================ */
+
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+.fade-in {
+    animation: fadeIn 0.5s ease;
+}
+
+
+
+@keyframes pulse {
+
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+
+}
+
+
+.pulse {
+    animation: pulse 0.4s ease;
+}
+
+
+
+/* ==============================
+   WIN EFFECT
+================================ */
+
+
+.win-message {
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    background: rgba(0,0,0,0.85);
+
+    padding: 30px 50px;
+
+    border-radius: 20px;
+
+    font-size: 35px;
+
+    font-weight: bold;
+
+    display: none;
+
+    z-index: 999;
+
+}
+
+
+.win-message.show {
+
+    display: block;
+
+    animation: fadeIn 0.5s ease;
+
+}
+
+
+
+/* ==============================
+   BUTTON PRESS EFFECT
+================================ */
+
+
+button:active {
+
+    transform: scale(0.95);
+
+}
+
+
+
+/* ==============================
+   SCROLL BAR DESIGN
+================================ */
+
+
+::-webkit-scrollbar {
+
+    width: 10px;
+
+}
+
+
+::-webkit-scrollbar-track {
+
+    background: #111;
+
+}
+
+
+::-webkit-scrollbar-thumb {
+
+    background: #00ff88;
+
+    border-radius: 10px;
+
+}
+
+
+/* ==============================
+   DISABLED BUTTON
+================================ */
+
+
+button:disabled {
+
+    opacity: 0.5;
+
+    cursor: not-allowed;
+
+}
+
+
+
+/* ==============================
+   LOADING EFFECT
+================================ */
+
+
+.loading {
+
+    animation: pulse 1s infinite;
+
+}
+
+
+/* ==============================
+   END OF STYLE.CSS
+================================ */

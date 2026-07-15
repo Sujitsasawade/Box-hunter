@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Box Hunter</title>
+
+    <meta name="description"
+        content="Box Hunter - Premium Catch The Box Game built using HTML, CSS and JavaScript.">
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ========================= -->
+    <!-- Loading Screen -->
+    <!-- ========================= -->
+
+    <div id="loadingScreen">
+
+        <div class="loaderBox">
+
+            <div class="loader"></div>
+
+            <h1>BOX HUNTER</h1>
+
+            <p>Loading...</p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- Background -->
+    <!-- ========================= -->
+
+    <div class="backgroundGlow glow1"></div>
+    <div class="backgroundGlow glow2"></div>
+    <div class="backgroundGlow glow3"></div>
+
+
+    <!-- ========================= -->
+    <!-- Main Container -->
+    <!-- ========================= -->
+
+    <div class="container">
+
+        <!-- ========================= -->
+        <!-- Logo -->
+        <!-- ========================= -->
+
+        <header>
+
+            <img
+                src="images/logo.png"
+                alt="Box Hunter Logo"
+                class="logo">
+
+            <h1>BOX HUNTER</h1>
+
+            <p class="subtitle">
+                Catch the Moving Box Before Time Runs Out
+            </p>
+
+        </header>
+
+
+        <!-- ========================= -->
+        <!-- Start Screen -->
+        <!-- ========================= -->
+
+        <section id="startScreen" class="glass">
+
+            <h2>Start Game</h2>
+
+            <div class="selection">
+
+                <div class="difficulty">
+
+                    <h3>Difficulty</h3>
+
+                    <button
+                        class="difficultyBtn active"
+                        data-speed="1">
+                        Easy
+                    </button>
+
+                    <button
+                        class="difficultyBtn"
+                        data-speed="2">
+                        Medium
+                    </button>
+
+                    <button
+                        class="difficultyBtn"
+                        data-speed="3">
+                        Hard
+                    </button>
+
+                </div>
+
+
+                <div class="mode">
+
+                    <h3>Timer</h3>
+
+                    <button
+                        class="timeBtn active"
+                        data-time="30">
+                        30 Seconds
+                    </button>
+
+                    <button
+                        class="timeBtn"
+                        data-time="60">
+                        60 Seconds
+                    </button>
+
+                </div>
+
+            </div>
+
+            <button id="startGameBtn" class="primaryButton">
+                START GAME
+            </button>
+
+        </section>
+
+
+        <!-- ========================= -->
+        <!-- Game Panel -->
+        <!-- ========================= -->
+
+        <section id="gamePanel" class="hidden">
+
+            <!-- HUD -->
+
+            <div class="hud glass">
+
+                <div class="stat">
+
+                    <span>Score</span>
+
+                    <h2 id="score">
+                        0
+                    </h2>
+
+                </div>
+
+                <div class="stat">
+
+                    <span>High Score</span>
+
+                    <h2 id="highScore">
+                        0
+                    </h2>
+
+                </div>
+
+                <div class="stat">
+
+                    <span>Time</span>
+
+                    <h2 id="timer">
+                        30
+                    </h2>
+
+                </div>
+
+                <div class="stat">
+
+                    <span>Combo</span>
+
+                    <h2 id="combo">
+                        x1
+                    </h2>
+
+                </div>
+
+                <div class="stat">
+
+                    <span>Accuracy</span>
+
+                    <h2 id="accuracy">
+                        100%
+                    </h2>
+
+                </div>
+
+                <div class="stat">
+
+                    <span>Miss</span>
+
+                    <h2 id="miss">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+            <!-- ========================= -->
+            <!-- Game Area -->
+            <!-- ========================= -->
+
+            <div id="gameArea" class="glass">
+
+                <!-- Floating Score -->
+                <div id="floatingScore"></div>
+
+                <!-- Target Box -->
+                <div id="targetBox">
+
+                    <span>+</span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================= -->
+            <!-- Controls -->
+            <!-- ========================= -->
+
+            <div class="controls">
+
+                <button id="pauseBtn" class="secondaryButton">
+                    Pause
+                </button>
+
+                <button id="restartBtn" class="secondaryButton">
+                    Restart
+                </button>
+
+                <button id="quitBtn" class="dangerButton">
+                    Quit
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================= -->
+        <!-- Pause Screen -->
+        <!-- ========================= -->
+
+        <section id="pauseScreen" class="popup hidden">
+
+            <div class="popupCard glass">
+
+                <h2>Game Paused</h2>
+
+                <p>
+                    Press Resume to continue playing.
+                </p>
+
+                <button id="resumeBtn" class="primaryButton">
+                    Resume
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================= -->
+        <!-- Game Over Screen -->
+        <!-- ========================= -->
+
+        <section id="gameOverScreen" class="popup hidden">
+
+            <div class="popupCard glass">
+
+                <h2>Game Over</h2>
+
+                <h3 id="finalScore">
+                    Score : 0
+                </h3>
+
+                <h4 id="bestScore">
+                    High Score : 0
+                </h4>
+
+                <p id="resultMessage">
+                    Great Job!
+                </p>
+
+                <div class="popupButtons">
+
+                    <button id="playAgainBtn"
+                        class="primaryButton">
+                        Play Again
+                    </button>
+
+                    <button id="homeBtn"
+                        class="secondaryButton">
+                        Home
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================= -->
+        <!-- Footer -->
+        <!-- ========================= -->
+
+        <footer>
+
+            <p>
+                Designed & Developed by Sujit
+            </p>
+
+        </footer>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- Audio -->
+    <!-- ========================= -->
+
+    <audio
+        id="clickSound"
+        src="sounds/click.mp3"
+        preload="auto">
+    </audio>
+
+    <audio
+        id="missSound"
+        src="sounds/miss.mp3"
+        preload="auto">
+    </audio>
+
+    <audio
+        id="gameOverSound"
+        src="sounds/gameover.mp3"
+        preload="auto">
+    </audio>
+
+    <audio
+        id="backgroundMusic"
+        src="sounds/music.mp3"
+        preload="auto"
+        loop>
+    </audio>
+
+
+    <!-- ========================= -->
+    <!-- JavaScript -->
+    <!-- ========================= -->
+
+    <script src="script.js"></script>
+
+</body>
+</html>
